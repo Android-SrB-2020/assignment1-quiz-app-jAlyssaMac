@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rick &amp; Morty Quiz</string>
+    <string name="roll_label" />
+    <string name="helloWorld">Hello World</string>
+</resources>
