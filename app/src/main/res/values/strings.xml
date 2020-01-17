@@ -2,4 +2,24 @@
     <string name="app_name">Rick &amp; Morty Quiz</string>
     <string name="roll_label" />
     <string name="helloWorld">Hello World</string>
+    <string name="question_1" />
+    <string name="question_2" />
+    <string name="question_3" />
+    <string name="question_4" />
+    <string name="question_5" />
+    <string name="question_6" />
+    <string name="question_7" />
+    <string name="question_8" />
+    <string name="question_9" />
+    <string name="question_10" />
+    <string name="question_11" />
+    <string name="question_12" />
+    <string name="question_13" />
+    <string name="question_14" />
+    <string name="question_15" />
+    <string name="question_16" />
+    <string name="question_17" />
+    <string name="question_18" />
+    <string name="question_19" />
+    <string name="question_20" />
 </resources>
