@@ -2,9 +2,13 @@ package com.example.assignment1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 
+val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,22 +34,70 @@ class MainActivity : AppCompatActivity() {
         Question(R.string.question_19, false),
         Question(R.string.question_20, true))
 
-    private var questionIndex = 0
-    private lateinit var questionView : TextView
-    private lateinit var nextButton : Button
-    private lateinit var backButton : Button
+    var questionIndex = 0
+    lateinit var questionView : TextView
+    lateinit var nextButton : AppCompatImageButton
+    lateinit var backButton : AppCompatImageButton
+    lateinit var trueButton : Button
+    lateinit var falseButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Log.d(TAG, "In onCreate")
+
         questionView = findViewById(R.id.question_view)
         nextButton = findViewById(R.id.nextButton)
+        backButton = findViewById(R.id.backButton)
+        trueButton = findViewById(R.id.true_button)
+        falseButton = findViewById(R.id.false_button)
 
         questionView.setText(questionBank[questionIndex].TextResId)
-        nextButton.setOnClickListener{
-            questionIndex = (questionIndex + 1) % 20
-            questionView.setText(questionBank[questionIndex].TextResId)
+
+        nextButton.setOnClickListener{nextQuestion()}
+        backButton.setOnClickListener{previousQuestion()}
+        trueButton.setOnClickListener{isAnswerTrue()}
+        falseButton.setOnClickListener{isAnswerFalse()}
+
+    }
+
+    private fun nextQuestion(){
+        questionIndex = (questionIndex + 1) % 20
+        questionView.setText(questionBank[questionIndex].TextResId)
+    }
+
+    private fun previousQuestion(){
+
+        if(questionIndex == 0){
+            questionIndex = questionBank.count() - 1;
+        }
+        else{
+            questionIndex = (questionIndex - 1)
+        }
+
+        questionView.setText(questionBank[questionIndex].TextResId)
+
+    }
+
+    private fun isAnswerTrue(){
+        if(questionBank[questionIndex].answer){
+            Toast.makeText(this, "Correct!!!",
+                Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "YOU ARE WRONG!",
+                Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun isAnswerFalse(){
+        if(!questionBank[questionIndex].answer){
+            Toast.makeText(this, "Correct!!!",
+                Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "YOU ARE WRONG!",
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
