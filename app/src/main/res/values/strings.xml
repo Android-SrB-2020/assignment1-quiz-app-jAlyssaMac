@@ -1,3 +1,8 @@
+<!--
+    Author: Jessica MacDonald
+    Exercise: Android, Assignment 1
+    Date: 01-19-2020
+ -->
 <resources>
     <string name="app_name">Rick &amp; Morty Quiz</string>
     <string name="roll_label" />

@@ -1,3 +1,9 @@
+/*
+    Author: Jessica MacDonald
+    Exercise: Android, Assignment 1
+    Date: 01-19-2020
+ */
+
 package com.example.assignment1
 
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 
-val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
+    //Creating list with all questions for the app
     private val questionBank = listOf(
         Question(R.string.question_1, false),
         Question(R.string.question_2, true),
@@ -34,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         Question(R.string.question_19, false),
         Question(R.string.question_20, true))
 
+    //Creating variables for all controls and the question index
     var questionIndex = 0
     lateinit var questionView : TextView
     lateinit var nextButton : AppCompatImageButton
@@ -45,28 +52,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "In onCreate")
-
+        //Initializing all views
         questionView = findViewById(R.id.question_view)
         nextButton = findViewById(R.id.nextButton)
         backButton = findViewById(R.id.backButton)
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
 
+        //Setting the question text
         questionView.setText(questionBank[questionIndex].TextResId)
 
+        //Setting onClick Listener for all buttons on the screen
         nextButton.setOnClickListener{nextQuestion()}
         backButton.setOnClickListener{previousQuestion()}
-        trueButton.setOnClickListener{isAnswerTrue()}
+        trueButton.setOnClickListener{isCorrectAnswer()}
         falseButton.setOnClickListener{isAnswerFalse()}
 
     }
 
+    /**
+     * Method going to the next question
+     */
     private fun nextQuestion(){
         questionIndex = (questionIndex + 1) % 20
         questionView.setText(questionBank[questionIndex].TextResId)
     }
 
+    /**
+     * Method that goes to the previous question
+     */
     private fun previousQuestion(){
 
         if(questionIndex == 0){
@@ -80,16 +94,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun isAnswerTrue(){
+    /**
+     * Method Checking whether the answer is true
+     */
+    private fun isCorrectAnswer(){
         if(questionBank[questionIndex].answer){
             Toast.makeText(this, "Correct!!!",
                 Toast.LENGTH_SHORT).show()
-        }else{
+        }else {
             Toast.makeText(this, "YOU ARE WRONG!",
                 Toast.LENGTH_SHORT).show()
         }
     }
 
+    /**
+     * Method checking whether the answer is false
+     */
     private fun isAnswerFalse(){
         if(!questionBank[questionIndex].answer){
             Toast.makeText(this, "Correct!!!",
